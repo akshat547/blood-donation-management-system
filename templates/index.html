@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blood Donation Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<header>
+    <h1>🩸 Blood Donation System Dashboard</h1>
+    <p>Save lives by donating blood </p>
+</header>
+
+<!-- NAVBAR -->
+<nav>
+    <a href="/">Home</a>
+    <a href="/add">Add Donor</a>
+    <a href="/donors">View Donors</a>
+    <a href="/about">About</a>
+    <a href="/export">Export CSV</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- DASHBOARD CARDS -->
+<section class="dashboard">
+
+    <div class="card">
+        <h2>Total Donors</h2>
+        <p>{{ total_donors }}</p>
+    </div>
+
+    <div class="card">
+        <h2>A+ Donors</h2>
+        <p>{{ a_positive }}</p>
+    </div>
+
+    <div class="card">
+        <h2>B+ Donors</h2>
+        <p>{{ b_positive }}</p>
+    </div>
+
+    <div class="card">
+        <h2>O+ Donors</h2>
+        <p>{{ o_positive }}</p>
+    </div>
+
+</section>
+
+<!-- 📊 GRAPH SECTION -->
+<section style="text-align:center; margin-top:30px;">
+
+    <h2>📊 Blood Group Statistics</h2>
+
+    <!-- Chart Widget -->
+    
+
+</section>
+
+<!-- QUICK ACTIONS -->
+<section class="actions">
+
+    <h2>⚡ Quick Actions</h2>
+
+    <a class="btn" href="/add">➕ Add Donor</a>
+    <a class="btn" href="/donors">📋 View Donors</a>
+    <a class="btn" href="/export">📄 Export Data</a>
+    <a class="btn" href="/about">ℹ️ About Project</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center; padding:10px; margin-top:30px;">
+    <p>Developed by  Akshat Rawat</p>
+</footer>
+
+</body>
+</html>

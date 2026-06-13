@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donors List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+<header>
+    <h1>🩸 Donors Database</h1>
+    <p>Manage all registered blood donors</p>
+</header>
+
+<!-- NAV -->
+<nav>
+    <a href="/">Home</a>
+    <a href="/add">Add Donor</a>
+    <a href="/donors">View Donors</a>
+    <a href="/about">About</a>
+    <a href="/export">Export CSV</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<!-- SEARCH SECTION -->
+<section style="text-align:center; margin:20px;">
+
+    <form method="GET" action="/donors">
+
+        <label>Filter by Blood Group:</label>
+
+        <select name="blood_group">
+            <option value="">All</option>
+
+            <option value="A+" {% if search_group == "A+" %}selected{% endif %}>A+</option>
+            <option value="A-" {% if search_group == "A-" %}selected{% endif %}>A-</option>
+            <option value="B+" {% if search_group == "B+" %}selected{% endif %}>B+</option>
+            <option value="B-" {% if search_group == "B-" %}selected{% endif %}>B-</option>
+            <option value="O+" {% if search_group == "O+" %}selected{% endif %}>O+</option>
+            <option value="O-" {% if search_group == "O-" %}selected{% endif %}>O-</option>
+            <option value="AB+" {% if search_group == "AB+" %}selected{% endif %}>AB+</option>
+            <option value="AB-" {% if search_group == "AB-" %}selected{% endif %}>AB-</option>
+        </select>
+
+        <button type="submit">🔍 Search</button>
+
+    </form>
+
+</section>
+
+<!-- TABLE SECTION -->
+<section class="table-container">
+
+<table border="1" width="95%" align="center" cellpadding="10">
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Blood Group</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for d in donors %}
+    <tr>
+        <td>{{ d[0] }}</td>
+        <td>{{ d[1] }}</td>
+        <td>{{ d[2] }}</td>
+        <td>{{ d[3] }}</td>
+        <td>{{ d[4] }}</td>
+        <td>{{ d[5] }}</td>
+
+        <td>
+            <a href="/edit/{{ d[0] }}">✏️ Edit</a>
+            |
+            <a href="/delete/{{ d[0] }}" onclick="return confirm('Are you sure you want to delete this donor?')">🗑️ Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</section>
+
+<!-- NO DATA -->
+{% if donors|length == 0 %}
+    <p style="text-align:center; color:red; margin-top:20px;">
+        😢 No donors found
+    </p>
+{% endif %}
+
+<!-- QUICK ACTIONS -->
+<section style="text-align:center; margin-top:30px;">
+
+    <a href="/add">➕ Add New Donor</a> |
+    <a href="/export">📄 Export CSV</a>
+
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center; padding:10px; margin-top:30px;">
+    <p>Developed by Akshat Rawat</p>
+</footer>
+
+</body>
+</html>

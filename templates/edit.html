@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Donor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>✏️ Edit Donor Details</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/">Home</a>
+        <a href="/add">Add Donor</a>
+        <a href="/donors">View Donors</a>
+    </nav>
+
+    <!-- Form Section -->
+    <section class="form-container">
+
+        <form method="POST">
+
+            <label>Name</label>
+            <input type="text" name="name" value="{{ donor.name }}" required>
+
+            <label>Age</label>
+            <input type="number" name="age" value="{{ donor.age }}" required>
+
+            <label>Blood Group</label>
+            <select name="blood_group" required>
+                <option value="A+" {% if donor.blood_group == "A+" %}selected{% endif %}>A+</option>
+                <option value="B+" {% if donor.blood_group == "B+" %}selected{% endif %}>B+</option>
+                <option value="O+" {% if donor.blood_group == "O+" %}selected{% endif %}>O+</option>
+                <option value="AB+" {% if donor.blood_group == "AB+" %}selected{% endif %}>AB+</option>
+                <option value="A-" {% if donor.blood_group == "A-" %}selected{% endif %}>A-</option>
+                <option value="B-" {% if donor.blood_group == "B-" %}selected{% endif %}>B-</option>
+                <option value="O-" {% if donor.blood_group == "O-" %}selected{% endif %}>O-</option>
+                <option value="AB-" {% if donor.blood_group == "AB-" %}selected{% endif %}>AB-</option>
+            </select>
+
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ donor.phone }}" required>
+
+            <label>City</label>
+            <input type="text" name="city" value="{{ donor.city }}" required>
+
+            <button type="submit">Update Donor</button>
+
+        </form>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Blood Donation System</p>
+    </footer>
+
+</body>
+</html>
